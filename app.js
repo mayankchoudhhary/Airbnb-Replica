@@ -48,6 +48,25 @@ app.get("/listings/:id",async(req,res)=>{
 })
 
 
+//create route
+app.post("/listings",async(req,res)=>{
+//     const {title,description,image,price,country,location}=req.body;
+//    await Listing.insertOne({
+//         title:title,
+//         description:description,
+//         price:price,
+//         image:{
+//             url:image
+//         },
+//         country:country,
+//         location:location
+//     })
+const newlisting =new Listing(req.body.listing);
+await newlisting.save();
+res.redirect("/listings")
+})
+
+
 
 
 
