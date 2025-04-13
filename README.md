@@ -25,4 +25,4 @@ To run the project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/airbnb-replica.git
+   git clone https://github.com/mayankchoudhhary/Airbnb-Replica.git
