@@ -7,7 +7,7 @@
 </head>
 <body>
     <h3>Edit details for <%=listing.title%></h3>
-    <form action="/listings?_method=PATCH" method="POST">
+    <form action="/listings/<%=listing._id%>/?_method=PUT" method="POST">
         <input type="text" name="listing[title]" value="<%=listing.title %>">
         <br><br>
         <input type="text" name="listing[description]" value="<%=listing.description %>">
@@ -20,7 +20,7 @@
         <br><br>
         <input type="text" name="listing[location]" value="<%=listing.location %>">
         <br><br>
-        <button>Submit</button>
+        <button>Edit</button>
     </form>
 </body>
 </html>

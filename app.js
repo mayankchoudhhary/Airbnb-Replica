@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const path = require("path")
+const methodOverride = require("method-override")
 
 app.set("view engine","ejs")
 app.set("views",path.join(__dirname,"views"))
 app.use(express.urlencoded({extended:true}))
+app.use(methodOverride("_method"))
 
 const mongoose = require("mongoose");
 const Listing = require("./models/listing.js")
@@ -66,11 +68,20 @@ await newlisting.save();
 res.redirect("/listings")
 })
 
-
+//edit route
 app.get("/listings/:id/edit",async(req,res)=>{
     const { id}=req.params;
     const listing = await Listing.findById(id)
     res.render("listings/edit.ejs",{listing})
+})
+
+
+//update route
+app.put("/listings/:id",async(req,res)=>{
+    const{id}=req.params;
+    console.log(req.body.listing)
+    await Listing.findByIdAndUpdate(id,{...req.body.listing})
+    res.redirect("/listings")
 })
 
 
