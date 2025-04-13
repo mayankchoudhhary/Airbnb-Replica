@@ -1,5 +1,10 @@
 const express = require("express");
 const app = express();
+const path = require("path")
+
+app.set("view engine","ejs")
+app.set("views",path.join(__dirname,"views"))
+
 const mongoose = require("mongoose");
 const Listing = require("./models/listing.js")
 
@@ -16,6 +21,11 @@ async function main(){
 
 app.get("/",(req,res)=>{
     res.send("Hi , I am root");
+})
+
+app.get("/listings",async(req,res)=>{
+    const allListings= await Listing.find({});
+    res.render("listings/index.ejs",{allListings})
 })
 
 app.get("/testListing",(req,res)=>{
